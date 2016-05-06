@@ -1,0 +1,10 @@
+{
+    "name": {
+	"message": "github-forget-emoji",
+	"description": "This is the long name of the app in Chrome's Webstore"
+    },
+    "description": {
+	"message": "Github emoji helper",
+	"description": "This is the description of the app that must declared in manifest.json"
+    }
+}
