@@ -1,20 +1,53 @@
+<script>
+$(document).ready(function() {
+    $('.menu .item').tab();
+});
+</script>
+
 <div class="ui top attached tabular menu">
-  <a class="active item">
-  Bio
-  </a>
-  <a class="item">
-  Photos
-  </a>
-  <div class="right menu">
-    <div class="item">
-      <div class="ui transparent icon input">
-        <input type="text" placeholder="Search users...">
-        <i class="search link icon"></i>
-      </div>
+    <a class="active item" data-tab="people">
+        People
+    </a>
+    <a class="item" data-tab="nature">
+        Nature
+    </a>
+    <a class="item" data-tab="object">
+        Objects
+    </a>
+    <a class="item" data-tab="place">
+        Places
+    </a>        
+    <a class="item" data-tab="symbol">
+        Symbols
+    </a>    
+    <div class="right menu">
+        <div class="item">
+            <div class="ui transparent icon input">
+                <input type="text" placeholder="Search users...">
+                <i class="search link icon"></i>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
-<div class="ui bottom attached segment">
-  <p></p>
+<div class="ui bottom attached tab segment active" data-tab="people">
+    <div class="ui top attached tabular menu">
+        <a class="active item" data-tab="face">
+            Face
+        </a>
+    </div>
+    <div class="ui bottom attached tab segment active" data-tab="face">
+    </div>
+</div>
+
+<div class="ui bottom attached tab segment" data-tab="nature">
+</div>
+
+<div class="ui bottom attached tab segment" data-tab="object">
+</div>
+
+<div class="ui bottom attached tab segment" data-tab="place">
+</div>
+
+<div class="ui bottom attached tab segment" data-tab="symbol">
 </div>

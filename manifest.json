@@ -29,10 +29,11 @@
             ],
             "js": [
                 "js/jquery-2.2.3.min.js",
-                "js/content_script.js"
+                "js/content_script.js",
+                "js/semantic.min.js"
             ],
             "css": [
-                "css/menu.min.css"
+                "css/semantic.min.css"
             ],
             "run_at": "document_idle",
             "all_frames": false
