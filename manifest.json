@@ -6,20 +6,9 @@
     "author": "Seokjun Hong",
     "default_locale": "en",
 
-    "permissions": [
-    ],
-
-    "background": {
-    },
-
     "browser_action": {
         "default_title": "__MSG_name__"
     },
-
-    "web_accessible_resources": [
-        "js/jquery-2.2.3.min.js",
-        "html/emoji_box.html"
-    ],
 
     "content_scripts": [
         {
@@ -28,9 +17,14 @@
                 "https://gist.github.com/*"
             ],
             "js": [
-                "js/jquery-2.2.3.min.js",
-                "js/content_script.js",
-                "js/semantic.min.js"
+                "js/vendor/jquery-2.2.3.min.js",
+                "js/common.js",
+                "js/vendor/semantic.min.js",
+                "js/vendor/browser.min.js",
+                "js/vendor/react.min.js",
+                "js/vendor/react-dom.min.js",
+                "js/vendor/react-with-addons.min.js",
+                "js/content_script.js"
             ],
             "css": [
                 "css/semantic.min.css"
