@@ -10,9 +10,9 @@
         "default_title": "__MSG_name__"
     },
 
-    "web_accessible_resources": {
+    "web_accessible_resources": [
         "emoji.json"
-    },
+    ],
 
     "content_scripts": [
         {
