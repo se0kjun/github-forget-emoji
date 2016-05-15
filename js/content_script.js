@@ -1,20 +1,21 @@
 var TabMenu = React.createClass({
-    displayName: "TabMenu",
-
     propTypes: {
-        itemList: React.PropTypes.array.isRequired,
+        itemList: React.PropTypes.object.isRequired,
         itemName: React.PropTypes.string
+    },
+
+    componentWillReceiveProps: function(nextProps) {
     },
 
     render: function() {
         var childElem = Object.keys(this.props.itemList).map(function(m) {
-            return React.createElement(TabLink, {itemName: this.props.itemList[m]});
-        });
-      
+            return React.createElement(TabLink, { itemName: m });
+        }.bind(this));
+
         return React.createElement('div', 
         {
             className: 'ui top attached tabular menu'
-        }, childLink);
+        }, childElem);
     }
 });
 
@@ -59,6 +60,8 @@ var TabLink = React.createClass({
     },
 
     render: function() {
+        console.log('testssssss');
+
         return React.createElement('a', 
         {
             className: 'item', 
@@ -79,24 +82,23 @@ var EmojiItem = React.createClass({
 var MainRender = React.createClass({
     getInitialState: function() {
         return {
-            emojiObject: null
+            emojiObject: {}
         }
     },
 
-    getEmojiObject: function() {
-        $.get('emoji.json', function(data) {
+    componentWillMount: function() {
+        $.get(chrome.extension.getURL('emoji.json'), $.proxy(function(data) {
             this.setState({
-                'emojiObject': data
+                emojiObject: JSON.parse(data)
             });
-        }).bind(this);
+        }, this));
     },
 
-    componentWillDidMount: function() {
+    componentDidMount: function() {
         $('.tabular.menu .item').tab();
     },
 
     render: function() {
-        this.getEmojiObject();
         var childMenu = React.createElement(TabMenu, { itemList: this.state.emojiObject });
 
         return React.createElement('div',
@@ -109,7 +111,7 @@ var MainRender = React.createClass({
 var HelloMessage = React.createClass({
   displayName: "HelloMessage",
 
-  render: render() {
+  render: function() {
     return React.createElement(
       "div",
       {className: 'test', 'data-tab': this.props.name},
@@ -120,6 +122,6 @@ var HelloMessage = React.createClass({
 });
 
 ReactDOM.render(
-    React.createElement(HelloMessage, { name: "John" }), 
+    React.createElement(MainRender), 
     document.getElementById('emoji_selectmenu')
 );
