@@ -1,5 +1,8 @@
+'use strict';
+
 var emoji_menu = $('<div/>', {
     id: 'emoji_selectmenu',
 });
 
-$('.timeline-comment > .discussion-topic-header').after(emoji_menu);
+if ($('#emoji_selectmenu').length == 0)
+    $('.timeline-comment > .discussion-topic-header').after(emoji_menu);

@@ -117,7 +117,9 @@ var MainRender = React.createClass({
     }
 });
 
-ReactDOM.render(
-    React.createElement(MainRender), 
-    document.getElementById('emoji_selectmenu')
-);
+if ($('#emoji_selectmenu > .emojibox').length == 0) {
+    ReactDOM.render(
+        React.createElement(MainRender), 
+        document.getElementById('emoji_selectmenu')
+    );
+}
