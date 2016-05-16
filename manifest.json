@@ -5,6 +5,10 @@
     "description": "__MSG_description__",
     "author": "Seokjun Hong",
     "default_locale": "en",
+    
+    "permissions": [
+        "webNavigation"
+    ],
 
     "browser_action": {
         "default_title": "__MSG_name__"
@@ -13,6 +17,12 @@
     "web_accessible_resources": [
         "emoji.json"
     ],
+
+    "background": {
+        "scripts": [
+            "js/background.js"
+        ]
+    },
 
     "content_scripts": [
         {
