@@ -24,7 +24,7 @@ var TabItem = React.createClass({
     
     render: function() {
         var itemChild = Object.keys(this.props.emojiList).map(function(m) {
-            if (Object.keys(this.props.emojiList) !== undefined) {
+            if (this.props.emojiList[m].constructor !== Array) {
                 // exists key: not array
                 var childMenu = React.createElement(TabMenu, 
                     {
@@ -34,20 +34,21 @@ var TabItem = React.createClass({
 
                 return React.createElement('div', 
                 {
-                    className: 'ui bottom attached tab segment'
+                    className: 'ui bottom attached tab segment',
+                    'data-tab': m
                 }, childMenu
                 , React.createElement(TabItem, {emojiList: this.props.emojiList[m], emojiName: m}) );
             }
             else {
                 // array type: show emoji-items
-                var childEmoji = this.props.emojiList.map(function(m) {
-                    return React.createElement(EmojiItem, {});
+                var childEmoji = this.props.emojiList[m].map(function(m) {
+                    return React.createElement(EmojiItem, {emojiObject: m});
                 });
 
                 return React.createElement('div', 
                 {
                     className: 'ui bottom attached tab segment',
-                    'data-tab': this.props.emojiName
+                    'data-tab': m
                 }, childEmoji);
             }
         }.bind(this));
@@ -72,10 +73,17 @@ var TabLink = React.createClass({
 
 var EmojiItem = React.createClass({
     propTypes: {
-        emojiObject: React.PropTypes.object.isRequired
+        emojiObject: React.PropTypes.array.isRequired
+    },
+
+    clickActions: function() {
+        var txt = ':' + this.props.emojiObject.name + ':';
+        var box = $('#issue_body');
+        box.val(box.val() + txt);
     },
 
     render: function() {
+        return React.createElement('img', {src: this.props.emojiObject.icon, onClick: this.clickActions});
     }
 });
 
@@ -94,7 +102,7 @@ var MainRender = React.createClass({
         }, this));
     },
 
-    componentDidMount: function() {
+    componentDidUpdate: function() {
         $('.tabular.menu .item').tab();
     },
 
