@@ -5,8 +5,10 @@
     "description": "__MSG_description__",
     "author": "Seokjun Hong",
     "default_locale": "en",
-    
+
     "permissions": [
+        "<all_urls>",
+        "tabs",
         "webNavigation"
     ],
 
@@ -29,16 +31,6 @@
             "matches": [
                 "https://github.com/*",
                 "https://gist.github.com/*"
-            ],
-            "js": [
-                "js/vendor/jquery-2.2.3.min.js",
-                "js/common.js",
-                "js/vendor/semantic.min.js",
-                "js/vendor/browser.min.js",
-                "js/vendor/react.min.js",
-                "js/vendor/react-dom.min.js",
-                "js/vendor/react-with-addons.min.js",
-                "js/content_script.js"
             ],
             "css": [
                 "css/semantic.min.css",
