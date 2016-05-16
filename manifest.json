@@ -31,7 +31,8 @@
                 "js/content_script.js"
             ],
             "css": [
-                "css/semantic.min.css"
+                "css/semantic.min.css",
+                "css/common.css"
             ],
             "run_at": "document_idle",
             "all_frames": false
