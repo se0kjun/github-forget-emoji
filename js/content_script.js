@@ -83,7 +83,14 @@ var EmojiItem = React.createClass({
     },
 
     render: function() {
-        return React.createElement('img', {src: this.props.emojiObject.icon, onClick: this.clickActions});
+        return React.createElement('img', 
+            {
+                className: 'emoji-object',
+                src: this.props.emojiObject.icon,
+                onClick: this.clickActions,
+                'data-content': this.props.emojiObject.name,
+                'data-variation' : 'inverted'
+            });
     }
 });
 
@@ -104,6 +111,7 @@ var MainRender = React.createClass({
 
     componentDidUpdate: function() {
         $('.tabular.menu .item').tab();
+        $('.emoji-object').popup();
     },
 
     render: function() {
