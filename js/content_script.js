@@ -78,15 +78,15 @@ var EmojiItem = React.createClass({
 
     clickActions: function() {
         var txt = ':' + this.props.emojiObject.name + ':';
-        var box = $('#issue_body, #new_comment_field');
+        var box = $('#issue_body, #new_comment_field, #new_commit_comment_field');
 
         var cursorPos = box.prop('selectionStart');
         var v = box.val();
         var textBefore = v.substring(0,  cursorPos );
         var textAfter  = v.substring( cursorPos, v.length );
         box.val( textBefore+ txt +textAfter );
-        box.prop('selectionStart', cursorPos);
-        box.prop('selectionEnd', cursorPos);
+        box.prop('selectionStart', cursorPos + txt.length);
+        box.prop('selectionEnd', cursorPos + txt.length);
     },
 
     render: function() {
