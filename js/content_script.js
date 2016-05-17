@@ -96,7 +96,8 @@ var EmojiItem = React.createClass({
                 src: this.props.emojiObject.icon,
                 onClick: this.clickActions,
                 'data-content': this.props.emojiObject.name,
-                'data-variation' : 'inverted'
+                'data-variation' : 'inverted',
+                'data-alternative-name': this.props.emojiObject.alternative_name
             });
     }
 });
