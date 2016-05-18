@@ -5,3 +5,17 @@
 .ui.segment img {
     width: 40px;
 }
+
+div.ui.show-emoji,
+.show-emoji {
+    display:flex;
+}
+
+div.ui.hide-emoji,
+.hide-emoji {
+    display: none;
+}
+
+.ui.toggle {
+    margin-top: 10px;
+}
