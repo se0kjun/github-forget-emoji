@@ -1,25 +1,36 @@
 var TabMenu = React.createClass({
     propTypes: {
         itemList: React.PropTypes.object.isRequired,
-        itemName: React.PropTypes.string
+        itemName: React.PropTypes.string,
+        tabChildMenu: React.PropTypes.bool
     },
 
     render: function() {
         var childElem = Object.keys(this.props.itemList).map(function(m) {
             return React.createElement(TabLink, { itemName: m });
         }.bind(this));
+        var childSearch = React.createElement(SearchEmoji);
 
-        return React.createElement('div', 
-        {
-            className: 'hide-emoji ui top attached tabular menu'
-        }, childElem);
+        if (this.props.tabChildMenu) {
+            return React.createElement('div', 
+            {
+                className: 'ui top attached tabular menu'
+            }, childElem);
+        }
+        else {
+            return React.createElement('div', 
+            {
+                className: 'hide-emoji ui top attached tabular menu'
+            }, childElem, childSearch);
+        }
     }
 });
 
 var TabItem = React.createClass({
     propTypes: {
         emojiList: React.PropTypes.object.isRequired,
-        emojiName: React.PropTypes.string.isRequired
+        emojiName: React.PropTypes.string.isRequired,
+        tabChildItem: React.PropTypes.bool
     },
     
     render: function() {
@@ -29,15 +40,16 @@ var TabItem = React.createClass({
                 var childMenu = React.createElement(TabMenu, 
                     {
                         itemList: this.props.emojiList[m], 
-                        itemName: m
+                        itemName: m,
+                        tabChildMenu: true
                     });
 
                 return React.createElement('div', 
                 {
-                    className: 'ui bottom attached tab segment',
+                    className: 'ui bottom attached tab segment border-wrapper',
                     'data-tab': m
                 }, childMenu
-                , React.createElement(TabItem, {emojiList: this.props.emojiList[m], emojiName: m}) );
+                , React.createElement(TabItem, {emojiList: this.props.emojiList[m], emojiName: m, tabChildItem: true}) );
             }
             else {
                 // array type: show emoji-items
@@ -47,13 +59,18 @@ var TabItem = React.createClass({
 
                 return React.createElement('div', 
                 {
-                    className: 'ui bottom attached tab segment',
+                    className: 'ui bottom attached tab segment border-wrapper',
                     'data-tab': m
                 }, childEmoji);
             }
         }.bind(this));
 
-        return React.createElement('div', { className: 'hide-emoji' }, itemChild);
+        if (this.props.tabChildItem) {
+            return React.createElement('div', {className: 'ui wrapper'}, itemChild);
+        } 
+        else {
+            return React.createElement('div', {className: 'ui wrapper hide-emoji'}, itemChild);
+        }
     }
 });
 
@@ -102,6 +119,26 @@ var EmojiItem = React.createClass({
     }
 });
 
+var SearchEmoji = React.createClass({
+    propTypes: {
+        emojiQuery: React.PropTypes.string.isRequired
+    },
+
+    searchEmoji: function() {
+    },
+
+    render: function() {
+        var childSearchBox = React.createElement('div', {className: 'item'},
+            React.createElement('div', {className: 'ui transparent icon input'}, 
+                React.createElement('input', {type: 'text', placeholder: 'Search emojis...', onChange: this.searchEmoji}),
+                React.createElement('i', {className: 'search link icon'})
+                )
+            );
+
+        return React.createElement('div', {className: 'right menu'}, childSearchBox);
+    }
+});
+
 var ShowEmoji = React.createClass({
     getInitialState: function() {
         return {
@@ -110,11 +147,11 @@ var ShowEmoji = React.createClass({
     },
 
     toggleEmoji: function() {
-        $('.emojibox div:nth-child(1)').toggleClass('hide-emoji');
-        $('.emojibox div:nth-child(1)').toggleClass('show-emoji');
-
-        $('.emojibox div:nth-child(2)').toggleClass('hide-emoji');
-        $('.emojibox div:nth-child(2)').toggleClass('show-emoji');
+        $('.emojibox > div:nth-child(1)').toggleClass('hide-emoji');
+        $('.emojibox > div:nth-child(1)').toggleClass('show-emoji');
+        
+        $('.emojibox > div:nth-child(2)').toggleClass('hide-emoji');
+        $('.emojibox > div:nth-child(2)').toggleClass('show-emoji');
 
         this.setState({
             emojiBoxState: !this.state.emojiBoxState
