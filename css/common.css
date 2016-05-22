@@ -1,5 +1,7 @@
 #emoji_selectmenu {
     padding:10px;
+    margin: 5px 0;
+    background-color: rgba(220, 220, 220, .4);
 }
 
 .ui.segment img {
@@ -18,4 +20,12 @@ div.ui.hide-emoji,
 
 .ui.toggle {
     margin-top: 10px;
+}
+
+div.ui.wrapper {
+    padding-left:1px;
+}
+
+div.ui.border-wrapper {
+    border-top: none !important;
 }
