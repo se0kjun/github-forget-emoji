@@ -17,7 +17,8 @@
     },
 
     "web_accessible_resources": [
-        "emoji.json"
+        "emoji.json",
+        "res/smile.png"
     ],
 
     "background": {
