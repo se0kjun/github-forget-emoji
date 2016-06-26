@@ -1,7 +1,7 @@
 #emoji_selectmenu {
     padding:10px;
-    margin: 5px 0;
-    background-color: rgba(220, 220, 220, .4);
+    padding-bottom: 0;
+    margin: 0;
 }
 
 .ui.segment img {
@@ -28,4 +28,51 @@ div.ui.wrapper {
 
 div.ui.border-wrapper {
     border-top: none !important;
+
 }
+
+.gh-emoji-scrollable {
+    height: 185px;
+    overflow: scroll;
+}
+
+.emoji-item {
+    height: 26px;
+}
+
+/* emoji modal */
+.gh-emoji-modal {
+    position: relative;
+    min-width: 650px;
+    margin-top: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    font-size: 12px;
+    color: #666;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(200,200,200,0.4);
+    border-radius: 3px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);    
+}
+.gh-emoji-header {
+    padding: 8px 10px;
+    line-height: 16px;
+    background: #f5f5f5;
+    border-bottom: 1px solid rgba(200,200,200,0.4);
+    border-top: 1px solid rgba(200,200,200,0.4);
+}
+.gh-emoji-header-content {
+    font-weight: bold;
+    color: #333;
+    text-shadow: 0 1px 0 #fff;    
+}
+.gh-emoji-contents {
+}
+.gh-emoji-wrapper {
+    position: absolute;
+    z-index: 30;
+    top: -370px;
+    right: 0;    
+}
+/* emoji modal */
