@@ -20,7 +20,7 @@ var TabMenu = React.createClass({
         else {
             return React.createElement('div', 
             {
-                className: 'hide-emoji ui top attached tabular menu'
+                className: 'ui top attached tabular menu'
             }, childElem, childSearch);
         }
     }
@@ -59,7 +59,7 @@ var TabItem = React.createClass({
 
                 return React.createElement('div', 
                 {
-                    className: 'ui bottom attached tab segment border-wrapper',
+                    className: 'ui bottom attached tab segment border-wrapper gh-emoji-scrollable',
                     'data-tab': m
                 }, childEmoji);
             }
@@ -69,7 +69,7 @@ var TabItem = React.createClass({
             return React.createElement('div', {className: 'ui wrapper'}, itemChild);
         } 
         else {
-            return React.createElement('div', {className: 'ui wrapper hide-emoji'}, itemChild);
+            return React.createElement('div', {className: 'ui wrapper'}, itemChild);
         }
     }
 });
@@ -200,12 +200,12 @@ var MainRender = React.createClass({
     render: function() {
         var childMenu = React.createElement(TabMenu, { itemList: this.state.emojiObject });
         var childItem = React.createElement(TabItem, { emojiList: this.state.emojiObject });
-        var showBox = React.createElement(ShowEmoji);
+        // var showBox = React.createElement(ShowEmoji);
 
         return React.createElement('div',
         {
             className: 'emojibox'
-        }, childMenu, childItem, showBox);
+        }, childMenu, childItem);
     }
 });
 
