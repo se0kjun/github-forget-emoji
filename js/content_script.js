@@ -6,8 +6,11 @@ var TabMenu = React.createClass({
     },
 
     render: function() {
-        var childElem = Object.keys(this.props.itemList).map(function(m) {
-            return React.createElement(TabLink, { itemName: m });
+        var childElem = Object.keys(this.props.itemList).map(function(m, idx) {
+            if (idx === 0)
+                return React.createElement(TabLink, { itemName: m, firstChild: true });
+            else
+                return React.createElement(TabLink, { itemName: m });
         }.bind(this));
         var childSearch = React.createElement(SearchEmoji);
 
@@ -29,12 +32,11 @@ var TabMenu = React.createClass({
 var TabItem = React.createClass({
     propTypes: {
         emojiList: React.PropTypes.object.isRequired,
-        emojiName: React.PropTypes.string.isRequired,
-        tabChildItem: React.PropTypes.bool
+        emojiName: React.PropTypes.string.isRequired
     },
     
     render: function() {
-        var itemChild = Object.keys(this.props.emojiList).map(function(m) {
+        var itemChild = Object.keys(this.props.emojiList).map(function(m, idx) {
             if (this.props.emojiList[m].constructor !== Array) {
                 // exists key: not array
                 var childMenu = React.createElement(TabMenu, 
@@ -43,46 +45,52 @@ var TabItem = React.createClass({
                         itemName: m,
                         tabChildMenu: true
                     });
+                var class_name = 'ui bottom attached tab segment border-wrapper';
+                if (idx === 0)
+                    class_name = 'ui bottom attached tab segment border-wrapper active';
 
                 return React.createElement('div', 
                 {
-                    className: 'ui bottom attached tab segment border-wrapper',
+                    className: class_name,
                     'data-tab': m
                 }, childMenu
-                , React.createElement(TabItem, {emojiList: this.props.emojiList[m], emojiName: m, tabChildItem: true}) );
+                , React.createElement(TabItem, {emojiList: this.props.emojiList[m], emojiName: m }) );
             }
             else {
                 // array type: show emoji-items
                 var childEmoji = this.props.emojiList[m].map(function(m) {
                     return React.createElement(EmojiItem, {emojiObject: m});
                 });
+                var class_name = 'ui bottom attached tab segment border-wrapper gh-emoji-scrollable';
+                if (idx === 0)
+                    class_name = 'ui bottom attached tab segment border-wrapper gh-emoji-scrollable active';
 
                 return React.createElement('div', 
                 {
-                    className: 'ui bottom attached tab segment border-wrapper gh-emoji-scrollable',
+                    className: class_name,
                     'data-tab': m
                 }, childEmoji);
             }
         }.bind(this));
 
-        if (this.props.tabChildItem) {
-            return React.createElement('div', {className: 'ui wrapper'}, itemChild);
-        } 
-        else {
-            return React.createElement('div', {className: 'ui wrapper'}, itemChild);
-        }
+        return React.createElement('div', {className: 'ui wrapper'}, itemChild);
     }
 });
 
 var TabLink = React.createClass({
     propTypes: {
-        itemName: React.PropTypes.string.isRequired
+        itemName: React.PropTypes.string.isRequired,
+        firstChild: React.PropTypes.bool
     },
 
     render: function() {
+        var class_name = 'item';
+        if (this.props.firstChild)
+            class_name = 'item active';
+
         return React.createElement('a', 
         {
-            className: 'item', 
+            className: class_name, 
             'data-tab': this.props.itemName
         }, this.props.itemName);
     }
@@ -212,7 +220,8 @@ var MainRender = React.createClass({
 if ($('.emoji_selectmenu > .emojibox').length == 0) {
     ReactDOM.render(
         React.createElement(MainRender), 
-        document.getElementsByClassName('emoji_selectmenu')[0]
+        // document.getElementsByClassName('emoji_selectmenu')[0]
+        document.getElementById('emoji_selectmenu')
     );
 }
 

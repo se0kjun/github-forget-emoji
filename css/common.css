@@ -28,7 +28,6 @@ div.ui.wrapper {
 
 div.ui.border-wrapper {
     border-top: none !important;
-
 }
 
 .gh-emoji-scrollable {
@@ -43,7 +42,7 @@ div.ui.border-wrapper {
 /* emoji modal */
 .gh-emoji-modal {
     position: relative;
-    min-width: 650px;
+    width: 660px;
     margin-top: 4px;
     margin-bottom: 20px;
     overflow: hidden;
@@ -51,7 +50,7 @@ div.ui.border-wrapper {
     color: #666;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid rgba(200,200,200,0.4);
+    border: 2px solid rgba(200, 200, 200, 0.7);
     border-radius: 3px;
     box-shadow: 0 3px 12px rgba(0,0,0,0.15);    
 }
@@ -72,7 +71,13 @@ div.ui.border-wrapper {
 .gh-emoji-wrapper {
     position: absolute;
     z-index: 30;
-    top: -370px;
+    top: -330px;
     right: 0;    
+}
+.gh-emoji-modal-hide {
+    display: none;
+}
+.ui.segment[class*="bottom attached"] {
+    margin-bottom: 0;
 }
 /* emoji modal */
