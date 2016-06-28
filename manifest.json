@@ -9,7 +9,8 @@
     "permissions": [
         "<all_urls>",
         "tabs",
-        "webNavigation"
+        "webNavigation",
+        "storage"
     ],
 
     "browser_action": {
@@ -41,7 +42,8 @@
                 "js/vendor/react-dom.min.js",
                 "js/vendor/react-with-addons.min.js",
                 "js/common.js",
-                "js/content_script.js"
+                "js/content_script.js",
+                "js/recent_emoji.js"
             ],
             "css": [
                 "css/semantic.min.css",
