@@ -39,7 +39,11 @@
     , emoji_modal_wrapper = $('<div/>', {
         id: 'gh-emoji-modal-wrapper',
         class: 'gh-emoji-wrapper gh-emoji-modal-hide'
+    }), recent_emoji = $('<div/>', {
+        class: 'gh-recent-emoji'
     });
+
+    $('.js-toolbar.toolbar-commenting').before(recent_emoji);
 
     // if ($('.timeline-comment > .emoji_selectmenu').length == 0)
     //     $('.timeline-comment > .discussion-topic-header').after(emoji_menu);

@@ -8,6 +8,11 @@
     width: 40px;
 }
 
+.gh-recent-emoji img {
+    width: 30px;
+    margin-right: 15px;
+}
+
 div.ui.show-emoji,
 .show-emoji {
     display:flex;
