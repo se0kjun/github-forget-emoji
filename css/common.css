@@ -77,6 +77,13 @@ div.ui.border-wrapper {
 .gh-emoji-modal-hide {
     display: none;
 }
+.gh-emoji-modal-header-close {
+    float: right;
+    cursor: pointer;
+    fill: rgb(102, 102, 102);
+    display: inline-block;
+    vertical-align: text-top;    
+}
 .ui.segment[class*="bottom attached"] {
     margin-bottom: 0;
 }

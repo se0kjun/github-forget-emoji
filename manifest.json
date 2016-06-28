@@ -45,8 +45,7 @@
             ],
             "css": [
                 "css/semantic.min.css",
-                "css/common.css",
-                "css/font-awesome.min.css"
+                "css/common.css"
             ],
             "run_at": "document_idle",
             "all_frames": false
