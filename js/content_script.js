@@ -102,6 +102,29 @@ var EmojiItem = React.createClass({
     },
 
     clickActions: function() {
+        var self = this;
+        chrome.storage.local.get('recent_emoji', function (result) {
+            if (!$.isArray(result.recent_emoji)) {
+                result.recent_emoji = [];
+                result.recent_emoji.push(self.props.emojiObject);
+            }
+            else {
+                for(var i = 0; i < result.recent_emoji.length; i++) {
+                    if (result.recent_emoji[i].name == self.props.emojiObject.name) {
+                        result.recent_emoji.splice(i, 1);
+                        break;
+                    }
+                }
+                result.recent_emoji.push(self.props.emojiObject);
+            }
+
+            if (result.recent_emoji.length > 10)
+                result.recent_emoji.shift();
+
+            chrome.storage.local.set({'recent_emoji': result.recent_emoji});
+            console.dir(result.recent_emoji);
+        });
+
         var txt = ':' + this.props.emojiObject.name + ':';
         var box = $('#issue_body, #new_comment_field, #new_commit_comment_field');
 
