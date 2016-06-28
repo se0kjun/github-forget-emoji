@@ -37,6 +37,7 @@ div.ui.border-wrapper {
 
 .emoji-item {
     height: 26px;
+    cursor: pointer;
 }
 
 /* emoji modal */

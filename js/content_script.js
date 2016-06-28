@@ -147,44 +147,6 @@ var SearchEmoji = React.createClass({
     }
 });
 
-var ShowEmoji = React.createClass({
-    getInitialState: function() {
-        return {
-            emojiBoxState: false
-        }
-    },
-
-    toggleEmoji: function() {
-        $('.emojibox > div:nth-child(1)').toggleClass('hide-emoji');
-        $('.emojibox > div:nth-child(1)').toggleClass('show-emoji');
-        
-        $('.emojibox > div:nth-child(2)').toggleClass('hide-emoji');
-        $('.emojibox > div:nth-child(2)').toggleClass('show-emoji');
-
-        this.setState({
-            emojiBoxState: !this.state.emojiBoxState
-        });
-    },
-
-    render: function() {
-        var childToggle = React.createElement('input', { type: 'checkbox', name: 'public'});
-        var labelText;
-        if (this.state.emojiBoxState) {
-            labelText = 'hide emoji';
-        }
-        else {
-            labelText = 'show emoji';
-        }
-        var childToggleLabel = React.createElement('label', null, labelText);
-
-        return React.createElement('div',
-        {
-            className: 'ui toggle checkbox',
-            onClick: this.toggleEmoji
-        }, childToggle, childToggleLabel);
-    }
-});
-
 var MainRender = React.createClass({
     getInitialState: function() {
         return {
@@ -208,7 +170,6 @@ var MainRender = React.createClass({
     render: function() {
         var childMenu = React.createElement(TabMenu, { itemList: this.state.emojiObject });
         var childItem = React.createElement(TabItem, { emojiList: this.state.emojiObject });
-        // var showBox = React.createElement(ShowEmoji);
 
         return React.createElement('div',
         {
