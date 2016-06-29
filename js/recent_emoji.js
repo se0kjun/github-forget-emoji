@@ -54,26 +54,19 @@ var RecentEmoji = React.createClass({
     componentWillMount: function() {
         var self = this;
         chrome.storage.local.get('recent_emoji', function (result) {
-            console.dir(result.recent_emoji);
             self.setState({
                 emojiList: result.recent_emoji
             });
         });
 
         chrome.storage.onChanged.addListener(function(changes, namespace) {
-            console.dir(changes['recent_emoji']);
             self.setState({
                 emojiList: changes['recent_emoji'].newValue
             });
         });
     },
-    
-    componentDidUpdate: function() {
-        $('.emoji-object').popup();
-    },
 
     render: function() {
-        console.dir(this.state.emojiList);
         var childEmoji = this.state.emojiList.reverse().map(function(m) {
             return React.createElement(EmojiItem, {emojiObject: m});
         });
